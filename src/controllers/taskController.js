@@ -19,18 +19,27 @@ const getTaskById = (req, res) => {
 };
 
 const createTask = (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, priority } = req.body;
 
-  if (!title) {
-    return res.status(400).json({
-      message: "Title is required"
-    });
-  }
-
-  const task = taskService.createTask({
-    title,
-    description
+if (!title) {
+  return res.status(400).json({
+    message: "Title is required"
   });
+}
+
+const validPriorities = ["LOW", "MEDIUM", "HIGH"];
+
+if (priority && !validPriorities.includes(priority)) {
+  return res.status(400).json({
+    message: "Priority must be LOW, MEDIUM, or HIGH"
+  });
+}
+
+const task = taskService.createTask({
+  title,
+  description,
+  priority
+});
 
   res.status(201).json(task);
 };

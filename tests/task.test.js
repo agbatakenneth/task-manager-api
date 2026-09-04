@@ -53,3 +53,43 @@ describe("Task Manager API", () => {
   });
 
 });
+
+test("Should create a HIGH priority task", async () => {
+  const response = await request(app)
+    .post("/api/tasks")
+    .send({
+      title: "Learn AWS",
+      description: "Prepare for AWS certification",
+      priority: "HIGH"
+    });
+
+  expect(response.statusCode).toBe(201);
+  expect(response.body.priority).toBe("HIGH");
+  expect(response.body.completed).toBe(false);
+});
+
+test("Should default priority to MEDIUM when priority is not provided", async () => {
+  const response = await request(app)
+    .post("/api/tasks")
+    .send({
+      title: "Learn Docker",
+      description: "Practice Docker commands"
+    });
+
+  expect(response.statusCode).toBe(201);
+  expect(response.body.priority).toBe("MEDIUM");
+});
+
+test("Should reject an invalid priority", async () => {
+  const response = await request(app)
+    .post("/api/tasks")
+    .send({
+      title: "Learn Kubernetes",
+      description: "Practice Kubernetes",
+      priority: "URGENT"
+    });
+
+  expect(response.statusCode).toBe(400);
+  expect(response.body.message)
+    .toBe("Priority must be LOW, MEDIUM, or HIGH");
+});
