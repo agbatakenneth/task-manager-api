@@ -30,25 +30,30 @@ Tasks support the following priority levels:
 
 If no priority is provided, the application automatically assigns:
 
-```text
-MEDIUM
+- `MEDIUM`
 
 Invalid priority values are rejected.
 
 Example:
+
+```
 {
   "message": "Priority must be LOW, MEDIUM, or HIGH"
 }
+```
 
-Technologies Used
-Node.js
-Express.js
-Jest
-Supertest
-Git
-GitHub
+### Technologies Used
 
-Project Structure
+- Node.js
+- Express.js
+- Jest
+- Supertest
+- Git
+- GitHub
+
+### Project Structure
+
+```
 task-manager-api/
 │
 ├── src/
@@ -71,46 +76,62 @@ task-manager-api/
 ├── package.json
 ├── package-lock.json
 └── README.md
+```
 
-Installation
+### Installation
 
 Clone the repository:
+```
 git clone https://github.com/agbatakenneth/task-manager-api.git
-
+```
 
 Navigate into the project directory:
 
+```
 cd task-manager-api
+```
 
 Install dependencies:
 
+```
 npm install
+```
 
 Running the Application
 
 Start the application:
 
+```
 npm start
 
+```
 The API runs on:
 
+```
 http://localhost:3000
+
+```
 
 Health Check
 Request
 
+```
 curl http://localhost:3000/health
+
+```
 
 Response
 
+```
 {
   "status": "UP",
   "service": "task-manager-api"
 }
-
+```
 Create a Task
 Request
 
+```
 curl -X POST http://localhost:3000/api/tasks \
 -H "Content-Type: application/json" \
 -d '{
@@ -118,9 +139,11 @@ curl -X POST http://localhost:3000/api/tasks \
   "description": "Prepare for AWS DevOps Professional",
   "priority": "HIGH"
 }'
+```
 
 Example Response
 
+```
 {
   "id": 1,
   "title": "Learn AWS DevOps",
@@ -129,30 +152,39 @@ Example Response
   "completed": false
 }
 
+```
+
 Get All Tasks
 Request
 
+```
 curl http://localhost:3000/api/tasks
+
+```
 
 Running Tests
 
 Run the automated tests:
 
+```
 npm test
+
+```
 
 Current test coverage includes:
 
-Health check
-Creating tasks
-Retrieving tasks
-Missing title validation
-HIGH priority tasks
-Default MEDIUM priority
-Invalid priority validation
-Git Branching Workflow
+- Health check
+- Creating tasks
+- Retrieving tasks
+- Missing title validation
+- HIGH priority tasks
+- Default MEDIUM priority
+- Invalid priority validation
+- Git Branching Workflow
 
 This project follows the workflow:
 
+```
 main
  │
  └── develop
@@ -169,10 +201,11 @@ main
                    │
                    ▼
                   main
-
+```
 
 Feature Development Process
 
+```
 Create feature branch
         ↓
 Develop feature
@@ -192,6 +225,8 @@ Create Pull Request
 Merge into develop
         ↓
 Delete feature branch
+
+```
 
 Version
 
