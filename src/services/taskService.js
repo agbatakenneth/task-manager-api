@@ -9,19 +9,18 @@ const getTaskById = (id) => {
   return tasks.find((task) => task.id === Number(id));
 };
 
-const createTask = ({ title, description }) => {
+const createTask = ({ title, description, priority }) => {
   const task = {
     id: nextId++,
     title,
     description: description || "",
+    priority: priority || "MEDIUM",
     completed: false
   };
 
   tasks.push(task);
-
   return task;
 };
-
 const updateTaskStatus = (id, completed) => {
   const task = getTaskById(id);
 
